@@ -6,7 +6,7 @@ PACKAGE_DIR="$HOME/packages"
 mkdir -p "$INSTALL_DIR" "$PACKAGE_DIR"
 
 echo "Downloading package manager script from GitHub..."
-curl -fsSL "https://github.com/yourusername/mypackage-manager/raw/main/pkg.sh" -o "$INSTALL_DIR/pkg"
+curl -fsSL "https://github.com/packagedingus/packagedingus/pkg.sh" -o "$INSTALL_DIR/pkg"
 
 chmod +x "$INSTALL_DIR/pkg"
 
