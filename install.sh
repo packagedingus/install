@@ -15,11 +15,19 @@ curl -fsSL "https://github.com/packagedingus/packagedingus/raw/main/dingus.sh" -
 chmod +x "$BIN_DIR/dingus"
 echo "✅ package dingus installed successfully at $BIN_DIR/dingus."
 
+if [[ "$SHELL" == */bash && "$(uname)" == "Darwin" ]]; then
+  PROFILE_FILE="$HOME/.bash_profile"
+else
+  PROFILE_FILE="$HOME/.bashrc"
+fi
+
 if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
   echo "🛠️ Adding package dingus to your PATH..."
-  echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$HOME/.bashrc"
+  echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$PROFILE_FILE"
+  
   echo "🔄 Reloading shell configuration..."
-  source "$HOME/.bashrc"
+  source "$PROFILE_FILE"
+  
   echo "✅ PATH updated."
 fi
 
