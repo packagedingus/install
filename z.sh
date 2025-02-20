@@ -1,19 +1,29 @@
-#!/bin/zsh
+#!/bin/bash
 
-INSTALL_DIR="$HOME/bin"
-PACKAGE_DIR="$HOME/packages"
+DINGUS_DIR="$HOME/dingus"
+BIN_DIR="$DINGUS_DIR/bin"
+PACKAGES_DIR="$DINGUS_DIR/packages"
 
-mkdir -p "$INSTALL_DIR" "$PACKAGE_DIR"
+echo "🚀 Starting installation of package dingus..."
+sleep 1
 
-echo "Downloading package manager script from GitHub..."
-curl -fsSL "https://github.com/packagedingus/packagedingus/pkg.sh" -o "$INSTALL_DIR/pkg"
+mkdir -p "$BIN_DIR" "$PACKAGES_DIR"
+echo "📂 Created necessary directories at $DINGUS_DIR."
 
-chmod +x "$INSTALL_DIR/pkg"
+echo "⬇️ Downloading package dingus..."
+curl -fsSL "https://github.com/packagedingus/packagedingus/raw/main/dingus.sh" -o "$BIN_DIR"
+chmod +x "$BIN_DIR"
+echo "✅ package dingus installed successfully."
 
-if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
-  echo "Adding $INSTALL_DIR to the PATH..."
-  echo "export PATH=\"$INSTALL_DIR:\$PATH\"" >> "$HOME/.zshrc"
+if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
+  echo "🛠️ Adding package dingus to your PATH..."
+  echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$HOME/.zshrc"
+  
+  echo "🔄 Reloading shell configuration..."
   source "$HOME/.zshrc"
+  echo "✅ Shell configuration reloaded."
+  
+  echo "✅ PATH updated."
 fi
 
-echo "Package manager installed successfully. You can now run: pkg"
+echo "🎉 Installation complete! You can now use package dingus by running: dingus"
